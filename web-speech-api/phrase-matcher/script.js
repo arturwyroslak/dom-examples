@@ -3,14 +3,14 @@ var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 
 var phrases = [
-  'I love to sing because it\'s fun',
-  'where are you going',
-  'can I call you tomorrow',
-  'why did you talk while I was talking',
-  'she enjoys reading books and playing games',
-  'where are you going',
-  'have a great day',
-  'she sells seashells on the seashore'
+  'witaj bracie',
+  'dzień dobry',
+  'język ukraiński',
+  'co słychać',
+  'nic nowego',
+  'tak sobie',
+  'to jest bardzo fajne',
+  'co mówisz'
 ];
 
 var phrasePara = document.querySelector('.phrase');
@@ -32,7 +32,7 @@ function testSpeech() {
   // To ensure case consistency while checking with the returned output text
   phrase = phrase.toLowerCase();
   phrasePara.textContent = phrase;
-  resultPara.textContent = 'Right or wrong?';
+  resultPara.textContent = 'Poprawnie, czy źle?';
   resultPara.style.background = 'rgba(0,0,0,0.2)';
   diagnosticPara.textContent = '...diagnostic messages';
 
@@ -41,7 +41,7 @@ function testSpeech() {
   var speechRecognitionList = new SpeechGrammarList();
   speechRecognitionList.addFromString(grammar, 1);
   recognition.grammars = speechRecognitionList;
-  recognition.lang = 'en-US';
+  recognition.lang = 'pl-PL';
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
 
@@ -59,10 +59,10 @@ function testSpeech() {
     var speechResult = event.results[0][0].transcript.toLowerCase();
     diagnosticPara.textContent = 'Speech received: ' + speechResult + '.';
     if(speechResult === phrase) {
-      resultPara.textContent = 'I heard the correct phrase!';
+      resultPara.textContent = 'Brzmi świetnie!';
       resultPara.style.background = 'lime';
     } else {
-      resultPara.textContent = 'That didn\'t sound right.';
+      resultPara.textContent = 'Jeszcze poćwicz.';
       resultPara.style.background = 'red';
     }
 
